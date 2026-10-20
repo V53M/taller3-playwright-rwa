@@ -39,8 +39,8 @@ sections 4.2.3 and 4.2.4.
 - [x] Module 2 - `playwright-tests/taller3/02-actions.spec.ts`
 - [x] Module 3 - `playwright-tests/taller3/03-assertions.spec.ts` (sender Darrel, so it can run in parallel with module 2)
 - [x] Module 4 - `playwright-tests/taller3/04-decision-table.spec.ts` (bank account form, 4 collapsed rules = 100%, defect 1 as `test.fail()`)
-- [x] Modules 1-4 executed and green on chromium (15/15, branch `taller3/playwright-modules`)
-- [ ] Module 5 - state transition
+- [x] Module 5 - `playwright-tests/taller3/05-state-transition.spec.ts` (request lifecycle, 5 states, 4 valid + I1 invalid, defects 4 and 5 as `test.fail()`)
+- [x] Modules 1-5 executed and green on chromium (19/19, branch `taller3/playwright-modules`)
 - [ ] Final report in English
 - [x] Team repository (see below)
 
@@ -92,7 +92,13 @@ Password for every demo user: `s3cret`
 | `WHjJ4qR2R2` | Judah_Dietrich50 | Lia Rosenbaum | 49474 |
 
 Helpers in `playwright-tests/taller3/support/auth.ts`: `USERS`, `SEED_PASSWORD`,
-`login()`, `logout()`, `openNewTransaction()`, `readBalanceInCents()`.
+`login()`, `logout()`, `openNewTransaction()`, `readBalanceInCents()`,
+`readServerBalanceInCents()`.
+
+The app caches the signed-in user (balance included) in `localStorage`
+(`authState`), so the sidenav balance goes stale after changes made from another
+session or via the API, even across reloads. Use `readServerBalanceInCents()`
+(`GET /checkAuth`) whenever a balance must reflect the server.
 
 ## Selector map
 
@@ -144,6 +150,8 @@ material for modules 4 and 5.
 3. No funds check: a payment larger than the balance goes through and leaves it at 0.
 4. **REJECT REQUEST transfers the money exactly like accepting it**, because
    `updateTransactionById` branches on transaction type rather than target status.
+5. **No state guard on `PATCH /transactions/:id`**: re-accepting an already accepted
+   request returns 2xx and charges the receiver a second time (found in module 5).
 
 ## Suggested material for the pending modules
 

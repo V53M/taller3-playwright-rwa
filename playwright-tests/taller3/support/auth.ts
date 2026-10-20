@@ -8,6 +8,8 @@ export const USERS = {
   ted: { id: 'uBmeaz5pX', username: 'Heath93', fullName: 'Ted Parisian' },
   kristian: { id: 'GjWovtg2hr', username: 'Arvilla_Hegmann', fullName: 'Kristian Bradtke' },
   darrel: { id: '_XblMqbuoP', username: 'Dina20', fullName: 'Darrel Ortiz' },
+  ruthie: { id: 'M1ty1gR8B3', username: 'Reyes.Osinski', fullName: 'Ruthie Prosacco' },
+  lia: { id: 'WHjJ4qR2R2', username: 'Judah_Dietrich50', fullName: 'Lia Rosenbaum' },
 } as const;
 
 export const SEED_PASSWORD = 's3cret';
@@ -52,4 +54,20 @@ export async function openNewTransaction(page: Page, recipientId: string) {
 export async function readBalanceInCents(page: Page): Promise<number> {
   const raw = await page.getByTestId('sidenav-user-balance').innerText();
   return Math.round(parseFloat(raw.replace(/[^0-9.]/g, '')) * 100);
+}
+
+/**
+ * Reads the signed-in user's balance as stored by the server, in cents.
+ *
+ * The RWA keeps the signed-in user in localStorage ("authState"), so after a
+ * change made in another session (accepting a request, a direct API call) the
+ * side navigation keeps showing the old balance, even across reloads.
+ * GET /checkAuth returns the user loaded from the database on each request;
+ * page.request shares the browser's session cookie, so it answers as that user.
+ */
+export async function readServerBalanceInCents(page: Page): Promise<number> {
+  const response = await page.request.get('http://localhost:3001/checkAuth');
+  expect(response.ok()).toBe(true);
+  const { user } = await response.json();
+  return user.balance;
 }
