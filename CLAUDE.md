@@ -38,8 +38,8 @@ sections 4.2.3 and 4.2.4.
 - [x] Module 1 - `playwright-tests/taller3/01-locators.spec.ts`
 - [x] Module 2 - `playwright-tests/taller3/02-actions.spec.ts`
 - [x] Module 3 - `playwright-tests/taller3/03-assertions.spec.ts` (sender Darrel, so it can run in parallel with module 2)
-- [x] Modules 1-3 executed and green on chromium (9/9, branch `taller3/playwright-modules`)
-- [ ] Module 4 - decision table
+- [x] Module 4 - `playwright-tests/taller3/04-decision-table.spec.ts` (bank account form, 4 collapsed rules = 100%, defect 1 as `test.fail()`)
+- [x] Modules 1-4 executed and green on chromium (15/15, branch `taller3/playwright-modules`)
 - [ ] Module 5 - state transition
 - [ ] Final report in English
 - [x] Team repository (see below)
