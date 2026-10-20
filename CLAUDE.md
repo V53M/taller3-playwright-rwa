@@ -42,7 +42,7 @@ sections 4.2.3 and 4.2.4.
 - [ ] Module 4 - decision table
 - [ ] Module 5 - state transition
 - [ ] Final report in English
-- [ ] Team repository (see below)
+- [x] Team repository (see below)
 
 ## How to run
 
@@ -160,12 +160,10 @@ valid transitions and one invalid are reachable through the UI.
 
 ## Repository
 
-`origin` still points at `https://github.com/cypress-io/cypress-realworld-app`,
-which the team cannot push to. A team repository has to be created and the remote
-switched before the final delivery, since the assignment requires a repo link and
-code runnable from the indicated branch.
+- `origin`: https://github.com/V53M/taller3-playwright-rwa (team repo, owner V53M)
+- `upstream`: https://github.com/cypress-io/cypress-realworld-app (read-only reference)
+- Work branch: `taller3/playwright-modules`. `develop` is the untouched upstream base.
+- Commits use the repo-local identity `Victor Marin <286382582+V53M@users.noreply.github.com>`.
 
-Uncommitted at the time of writing: `playwright.config.ts`, `playwright-tests/`,
-`tests/`, plus modifications to `.gitignore`, `data/database.json`, `package.json`
-and `yarn.lock`. `data/database.json` is regenerated on every `yarn dev` and
-should probably be left out of commits.
+Intentionally never committed: `data/database.json` (reseeded on every `yarn dev`),
+`playwright.config.ts.bak`, and the `tests/example.spec.ts` scaffold.
