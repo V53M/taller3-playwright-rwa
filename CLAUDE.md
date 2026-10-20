@@ -37,8 +37,8 @@ sections 4.2.3 and 4.2.4.
 - [x] Playwright configured (`testIdAttribute: 'data-test'` added to `playwright.config.ts`; backup at `playwright.config.ts.bak`)
 - [x] Module 1 - `playwright-tests/taller3/01-locators.spec.ts`
 - [x] Module 2 - `playwright-tests/taller3/02-actions.spec.ts`
-- [x] Modules 1 and 2 executed and green on chromium (8/8, branch `taller3/playwright-modules`)
-- [ ] Module 3 - assertions
+- [x] Module 3 - `playwright-tests/taller3/03-assertions.spec.ts` (sender Darrel, so it can run in parallel with module 2)
+- [x] Modules 1-3 executed and green on chromium (9/9, branch `taller3/playwright-modules`)
 - [ ] Module 4 - decision table
 - [ ] Module 5 - state transition
 - [ ] Final report in English
